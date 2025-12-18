@@ -1,0 +1,180 @@
+/* Theme CSS Variables */
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+  --bg-card: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --accent: #ffd700;
+  --accent-light: rgba(255, 215, 0, 0.2);
+  --accent-border: rgba(255, 215, 0, 0.1);
+  --border: rgba(255, 255, 255, 0.1);
+  --input-bg: rgba(255, 255, 255, 0.15);
+  --dropdown-bg: #1a1a1a;
+  --success: rgba(76, 175, 80, 0.3);
+  --error: rgba(244, 67, 54, 0.3);
+}
+
+/* Dark Gold (Default) */
+[data-theme="dark-gold"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+  --bg-card: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --accent: #ffd700;
+  --accent-light: rgba(255, 215, 0, 0.2);
+  --accent-border: rgba(255, 215, 0, 0.1);
+  --border: rgba(255, 255, 255, 0.1);
+  --input-bg: rgba(255, 255, 255, 0.15);
+  --dropdown-bg: #1a1a1a;
+}
+
+/* Dark Emerald */
+[data-theme="dark-emerald"] {
+  --bg-primary: #0a1a0f;
+  --bg-secondary: rgba(16, 185, 129, 0.05);
+  --bg-card: rgba(16, 185, 129, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --accent: #10b981;
+  --accent-light: rgba(16, 185, 129, 0.2);
+  --accent-border: rgba(16, 185, 129, 0.2);
+  --border: rgba(16, 185, 129, 0.15);
+  --input-bg: rgba(16, 185, 129, 0.15);
+  --dropdown-bg: #0d1f14;
+}
+
+/* Dark Blue */
+[data-theme="dark-blue"] {
+  --bg-primary: #0a0f1a;
+  --bg-secondary: rgba(59, 130, 246, 0.05);
+  --bg-card: rgba(59, 130, 246, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --accent: #3b82f6;
+  --accent-light: rgba(59, 130, 246, 0.2);
+  --accent-border: rgba(59, 130, 246, 0.2);
+  --border: rgba(59, 130, 246, 0.15);
+  --input-bg: rgba(59, 130, 246, 0.15);
+  --dropdown-bg: #0d1420;
+}
+
+/* Dark Purple */
+[data-theme="dark-purple"] {
+  --bg-primary: #0f0a1a;
+  --bg-secondary: rgba(139, 92, 246, 0.05);
+  --bg-card: rgba(139, 92, 246, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --accent: #8b5cf6;
+  --accent-light: rgba(139, 92, 246, 0.2);
+  --accent-border: rgba(139, 92, 246, 0.2);
+  --border: rgba(139, 92, 246, 0.15);
+  --input-bg: rgba(139, 92, 246, 0.15);
+  --dropdown-bg: #140d20;
+}
+
+/* Dark Rose */
+[data-theme="dark-rose"] {
+  --bg-primary: #1a0a10;
+  --bg-secondary: rgba(244, 63, 94, 0.05);
+  --bg-card: rgba(244, 63, 94, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --accent: #f43f5e;
+  --accent-light: rgba(244, 63, 94, 0.2);
+  --accent-border: rgba(244, 63, 94, 0.2);
+  --border: rgba(244, 63, 94, 0.15);
+  --input-bg: rgba(244, 63, 94, 0.15);
+  --dropdown-bg: #200d14;
+}
+
+/* Light */
+[data-theme="light"] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: rgba(0, 0, 0, 0.03);
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --accent: #0d7a5f;
+  --accent-light: rgba(13, 122, 95, 0.1);
+  --accent-border: rgba(13, 122, 95, 0.2);
+  --border: rgba(0, 0, 0, 0.1);
+  --input-bg: rgba(0, 0, 0, 0.05);
+  --dropdown-bg: #ffffff;
+}
+
+/* Midnight */
+[data-theme="midnight"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: rgba(148, 163, 184, 0.05);
+  --bg-card: rgba(148, 163, 184, 0.08);
+  --text-primary: #e2e8f0;
+  --text-secondary: rgba(226, 232, 240, 0.7);
+  --accent: #38bdf8;
+  --accent-light: rgba(56, 189, 248, 0.2);
+  --accent-border: rgba(56, 189, 248, 0.2);
+  --border: rgba(148, 163, 184, 0.15);
+  --input-bg: rgba(148, 163, 184, 0.1);
+  --dropdown-bg: #1e293b;
+}
+
+/* Islamic Green */
+[data-theme="islamic-green"] {
+  --bg-primary: #052e16;
+  --bg-secondary: rgba(34, 197, 94, 0.08);
+  --bg-card: rgba(34, 197, 94, 0.12);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --accent: #22c55e;
+  --accent-light: rgba(34, 197, 94, 0.25);
+  --accent-border: rgba(34, 197, 94, 0.3);
+  --border: rgba(34, 197, 94, 0.2);
+  --input-bg: rgba(34, 197, 94, 0.15);
+  --dropdown-bg: #0a3d1f;
+}
+
+/* Light Blue */
+[data-theme="light-blue"] {
+  --bg-primary: #f0f9ff;
+  --bg-secondary: rgba(14, 165, 233, 0.08);
+  --bg-card: #ffffff;
+  --text-primary: #0c4a6e;
+  --text-secondary: rgba(12, 74, 110, 0.7);
+  --accent: #0ea5e9;
+  --accent-light: rgba(14, 165, 233, 0.15);
+  --accent-border: rgba(14, 165, 233, 0.3);
+  --border: rgba(14, 165, 233, 0.2);
+  --input-bg: rgba(14, 165, 233, 0.1);
+  --dropdown-bg: #ffffff;
+}
+
+/* Background Patterns */
+[data-pattern="stars"] {
+  --pattern: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L35 15L45 15L37 22L40 32L30 26L20 32L23 22L15 15L25 15Z' fill='none' stroke='rgba(128,128,128,0.1)' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-pattern="dots"] {
+  --pattern: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='3' fill='rgba(128,128,128,0.15)'/%3E%3C/svg%3E");
+}
+
+[data-pattern="diamonds"] {
+  --pattern: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 10L70 40L40 70L10 40Z' fill='none' stroke='rgba(128,128,128,0.1)' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-pattern="circles"] {
+  --pattern: url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='25' cy='25' r='15' fill='none' stroke='rgba(128,128,128,0.08)' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-pattern="grid"] {
+  --pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0H40V40' fill='none' stroke='rgba(128,128,128,0.08)' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-pattern="islamic"] {
+  --pattern: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L50 20L70 20L55 35L60 55L40 45L20 55L25 35L10 20L30 20Z M0 40L10 50L10 70L25 60L40 80L40 60L55 70L70 70L60 55L80 40L60 40L70 25L55 10L40 20L25 10L10 25L20 40Z' fill='none' stroke='rgba(128,128,128,0.06)' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+[data-pattern="none"] {
+  --pattern: none;
+}

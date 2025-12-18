@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.font-naskh { font-family: 'Noto Naskh Arabic', serif !important; }
+.font-nastaliq { font-family: 'Noto Nastaliq Urdu', serif !important; line-height: 2.2 !important; }
+.font-kufi { font-family: 'Amiri', serif !important; font-weight: 700 !important; }
+.font-amiri { font-family: 'Amiri', serif !important; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  background-image: var(--pattern);
+  color: var(--text-primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+#location-info {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+#date-info {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+#date-info span {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+/* Main sections */
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+section {
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-border);
+  border-radius: 15px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Prayer Times Section */
+.prayer-section {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+
+#prayer-times {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prayer-card {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 15px 20px;
+  transition: all 0.3s ease;
+}
+
+.prayer-card:hover {
+  background: var(--accent-light);
+  border-color: var(--accent-border);
+  transform: translateX(5px);
+}
+
+.prayer-card.next-prayer {
+  background: var(--accent-light);
+  border: 2px solid var(--accent);
+}
+
+.prayer-card.passed {
+  opacity: 0.5;
+}
+
+.prayer-icon {
+  font-size: 28px;
+  margin-right: 15px;
+}
+
+.prayer-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prayer-name {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.prayer-time {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.prayer-status {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-left: 15px;
+}
+
+.prayer-card.next-prayer .prayer-status {
+  background: var(--accent);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+#next-prayer-countdown {
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  background: var(--accent-light);
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+#countdown-timer {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: var(--accent);
+}
+
+#next-prayer-name {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Dua Section */
+.dua-section {
+  grid-column: 2 / 3;
+}
+
+#dua-container {
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dua-arabic {
+  font-size: 28px;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  direction: rtl;
+  font-family: 'Traditional Arabic', 'Scheherazade', serif;
+}
+
+.dua-transliteration {
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.dua-translation {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.dua-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.dua-btn {
+  background: var(--input-bg);
+  border: none;
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dua-btn:hover {
+  background: var(--accent-light);
+}
+
+#dua-counter {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Allah Names Section */
+.allah-names-section {
+  grid-column: 2 / 3;
+}
+
+#allah-name-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.name-number {
+  display: inline-block;
+  background: var(--accent-light);
+  color: var(--accent);
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.name-arabic {
+  font-size: 48px;
+  margin-bottom: 15px;
+  font-family: 'Traditional Arabic', 'Scheherazade', serif;
+}
+
+.name-transliteration {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.name-meaning {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.name-progress {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 30px;
+}
+
+#settings-btn {
+  background: var(--accent-light);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#settings-btn:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .prayer-section {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .dua-section,
+  .allah-names-section {
+    grid-column: 1;
+  }
+}

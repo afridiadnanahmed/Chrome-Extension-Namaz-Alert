@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namaz Timings</title>
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Namaz Timings</h1>
+
+    <div id="location-info">
+      <span id="city">Loading...</span>
+    </div>
+
+    <div id="prayer-times">
+      <div class="prayer-row">
+        <span class="prayer-name">Fajr</span>
+        <span class="prayer-time" id="fajr">--:--</span>
+      </div>
+      <div class="prayer-row">
+        <span class="prayer-name">Sunrise</span>
+        <span class="prayer-time" id="sunrise">--:--</span>
+      </div>
+      <div class="prayer-row">
+        <span class="prayer-name">Dhuhr</span>
+        <span class="prayer-time" id="dhuhr">--:--</span>
+      </div>
+      <div class="prayer-row">
+        <span class="prayer-name">Asr</span>
+        <span class="prayer-time" id="asr">--:--</span>
+      </div>
+      <div class="prayer-row">
+        <span class="prayer-name">Maghrib</span>
+        <span class="prayer-time" id="maghrib">--:--</span>
+      </div>
+      <div class="prayer-row">
+        <span class="prayer-name">Isha</span>
+        <span class="prayer-time" id="isha">--:--</span>
+      </div>
+    </div>
+
+    <div id="date-info">
+      <span id="gregorian-date"></span>
+      <span id="hijri-date"></span>
+    </div>
+
+    <button id="settings-btn">Settings</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

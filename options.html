@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namaz Timings - Settings</title>
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Settings</h1>
+
+    <section class="settings-section">
+      <h2>Location</h2>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <div class="searchable-select" id="country-select">
+          <input type="text" id="country-search" placeholder="Search country..." autocomplete="off">
+          <div class="select-dropdown" id="country-dropdown"></div>
+          <input type="hidden" id="country">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <div class="searchable-select" id="city-select">
+          <input type="text" id="city-search" placeholder="Select country first..." autocomplete="off" disabled>
+          <div class="select-dropdown" id="city-dropdown"></div>
+          <input type="hidden" id="city">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="method">Calculation Method</label>
+        <select id="method">
+          <option value="0">Shia Ithna-Ashari</option>
+          <option value="1">University of Islamic Sciences, Karachi</option>
+          <option value="2" selected>Islamic Society of North America (ISNA)</option>
+          <option value="3">Muslim World League</option>
+          <option value="4">Umm Al-Qura University, Makkah</option>
+          <option value="5">Egyptian General Authority of Survey</option>
+          <option value="7">Institute of Geophysics, University of Tehran</option>
+          <option value="8">Gulf Region</option>
+          <option value="9">Kuwait</option>
+          <option value="10">Qatar</option>
+          <option value="11">Majlis Ugama Islam Singapura, Singapore</option>
+          <option value="12">Union Organization Islamic de France</option>
+          <option value="13">Diyanet Isleri Baskanligi, Turkey</option>
+          <option value="14">Spiritual Administration of Muslims of Russia</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="school">Asr Calculation Method</label>
+        <select id="school">
+          <option value="0">Shafi (Standard)</option>
+          <option value="1">Hanafi</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h2>Prayer Times</h2>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="use-manual-times">
+          <span>Set prayer times manually</span>
+        </label>
+      </div>
+      <div id="manual-times-container" class="manual-times-grid">
+        <div class="form-group">
+          <label for="time-fajr">Fajr</label>
+          <input type="time" id="time-fajr" disabled>
+        </div>
+        <div class="form-group">
+          <label for="time-sunrise">Sunrise</label>
+          <input type="time" id="time-sunrise" disabled>
+        </div>
+        <div class="form-group">
+          <label for="time-dhuhr">Dhuhr</label>
+          <input type="time" id="time-dhuhr" disabled>
+        </div>
+        <div class="form-group">
+          <label for="time-asr">Asr</label>
+          <input type="time" id="time-asr" disabled>
+        </div>
+        <div class="form-group">
+          <label for="time-maghrib">Maghrib</label>
+          <input type="time" id="time-maghrib" disabled>
+        </div>
+        <div class="form-group">
+          <label for="time-isha">Isha</label>
+          <input type="time" id="time-isha" disabled>
+        </div>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h2>Notifications</h2>
+      <div class="form-group">
+        <label for="alert-time">Alert before prayer (minutes)</label>
+        <div class="alert-time-row">
+          <input type="number" id="alert-time" value="20" min="5" max="60">
+          <button type="button" id="test-notification-btn" class="btn btn-small">Test Notification</button>
+        </div>
+      </div>
+      <div class="notification-toggles">
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="notify-fajr" checked>
+            <span>Fajr</span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="notify-dhuhr" checked>
+            <span>Dhuhr</span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="notify-asr" checked>
+            <span>Asr</span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="notify-maghrib" checked>
+            <span>Maghrib</span>
+          </label>
+        </div>
+        <div class="toggle-item">
+          <label>
+            <input type="checkbox" id="notify-isha" checked>
+            <span>Isha</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h2>99 Names of Allah</h2>
+      <div class="form-group">
+        <label for="name-interval">Rotation interval (minutes)</label>
+        <input type="number" id="name-interval" value="1" min="1" max="60">
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h2>Arabic/Urdu Font</h2>
+      <div class="form-group">
+        <label for="arabic-font">Select font style for Duas and Allah Names</label>
+        <select id="arabic-font">
+          <option value="naskh">Naskh (Arabic)</option>
+          <option value="nastaliq">Nastaliq (Urdu)</option>
+          <option value="kufi">Kufi (Decorative)</option>
+          <option value="amiri">Amiri (Traditional)</option>
+        </select>
+      </div>
+      <div class="font-preview">
+        <p id="font-preview-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h2>Theme</h2>
+      <div class="form-group">
+        <label for="theme">Select app theme</label>
+        <select id="theme">
+          <option value="dark-gold">Dark Gold (Default)</option>
+          <option value="dark-emerald">Dark Emerald</option>
+          <option value="dark-blue">Dark Blue</option>
+          <option value="dark-purple">Dark Purple</option>
+          <option value="dark-rose">Dark Rose</option>
+          <option value="light">Light</option>
+          <option value="light-blue">Light Blue</option>
+          <option value="midnight">Midnight</option>
+          <option value="islamic-green">Islamic Green</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="pattern">Background pattern</label>
+        <select id="pattern">
+          <option value="stars">Stars</option>
+          <option value="dots">Dots</option>
+          <option value="diamonds">Diamonds</option>
+          <option value="circles">Circles</option>
+          <option value="grid">Grid</option>
+          <option value="islamic">Islamic Geometric</option>
+          <option value="none">None</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="button-group">
+      <button id="save-btn" class="btn btn-primary">Save Settings</button>
+      <button id="reset-btn" class="btn btn-secondary">Reset to Defaults</button>
+    </div>
+
+    <div id="status-message"></div>
+  </div>
+
+  <script src="data/locations.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

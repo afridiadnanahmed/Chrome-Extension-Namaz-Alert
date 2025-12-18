@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.font-naskh { font-family: 'Noto Naskh Arabic', serif !important; }
+.font-nastaliq { font-family: 'Noto Nastaliq Urdu', serif !important; line-height: 2.2 !important; }
+.font-kufi { font-family: 'Amiri', serif !important; font-weight: 700 !important; }
+.font-amiri { font-family: 'Amiri', serif !important; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-width: 280px;
+  background-color: var(--bg-primary);
+  background-image: var(--pattern);
+  color: var(--text-primary);
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+#location-info {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+#prayer-times {
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-border);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.prayer-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.prayer-row:last-child {
+  border-bottom: none;
+}
+
+.prayer-row.next-prayer {
+  background: var(--accent-light);
+  border-radius: 6px;
+}
+
+.prayer-name {
+  font-weight: 500;
+}
+
+.prayer-time {
+  font-weight: 600;
+  font-family: monospace;
+  font-size: 15px;
+}
+
+#date-info {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+#date-info span {
+  display: block;
+  margin: 3px 0;
+}
+
+#settings-btn {
+  width: 100%;
+  padding: 10px;
+  background: var(--accent-light);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#settings-btn:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
