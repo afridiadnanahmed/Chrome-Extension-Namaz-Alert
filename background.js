@@ -1,3 +1,17 @@
+// Initialize alarms when service worker starts
+(async () => {
+  const stored = await chrome.storage.local.get(['prayerTimes', 'lastFetch']);
+  const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
+  
+  // If prayer times are missing or stale, refresh them
+  if (!stored.prayerTimes || !stored.lastFetch || stored.lastFetch < oneDayAgo) {
+    await refreshPrayerTimes();
+  }
+  
+  // Always set up alarms to ensure they're active
+  await setupPrayerAlarms();
+})();
+
 chrome.runtime.onInstalled.addListener(async () => {
   await chrome.storage.local.set({
     city: 'London',
@@ -39,13 +53,22 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
+// Register alarm listener at the top level to ensure it's always active
 chrome.alarms.onAlarm.addListener(async (alarm) => {
-  if (alarm.name === 'dailyRefresh') {
-    await refreshPrayerTimes();
-    await setupPrayerAlarms();
-  } else if (alarm.name.startsWith('prayer-')) {
-    const prayerName = alarm.name.replace('prayer-', '');
-    await showPrayerNotification(prayerName);
+  console.log('Alarm triggered:', alarm.name, 'at', new Date().toLocaleString());
+  
+  try {
+    if (alarm.name === 'dailyRefresh') {
+      console.log('Refreshing prayer times and resetting alarms');
+      await refreshPrayerTimes();
+      await setupPrayerAlarms();
+    } else if (alarm.name.startsWith('prayer-')) {
+      const prayerName = alarm.name.replace('prayer-', '');
+      console.log('Showing notification for:', prayerName);
+      await showPrayerNotification(prayerName);
+    }
+  } catch (error) {
+    console.error('Error handling alarm:', error);
   }
 });
 
@@ -102,7 +125,12 @@ async function setupPrayerAlarms() {
 
   const stored = await chrome.storage.local.get(['prayerTimes', 'alertTime', 'notifications']);
 
-  if (!stored.prayerTimes) return;
+  if (!stored.prayerTimes) {
+    console.log('No prayer times available for alarm scheduling');
+    return;
+  }
+
+  console.log('Setting up prayer alarms with alertTime:', stored.alertTime, 'minutes');
 
   const alertMinutes = stored.alertTime || 20;
   const notifications = stored.notifications || {};
@@ -111,23 +139,49 @@ async function setupPrayerAlarms() {
   const now = new Date();
 
   prayers.forEach(prayer => {
-    if (notifications[prayer.toLowerCase()] === false) return;
+    if (notifications[prayer.toLowerCase()] === false) {
+      console.log(`Notifications disabled for ${prayer}`);
+      return;
+    }
 
     const prayerTime = stored.prayerTimes[prayer];
-    if (!prayerTime) return;
+    if (!prayerTime) {
+      console.log(`No prayer time found for ${prayer}`);
+      return;
+    }
 
-    const [hours, minutes] = prayerTime.split(':').map(Number);
+    // Remove any timezone suffix (e.g., "05:23 (EET)" -> "05:23")
+    const timeOnly = prayerTime.split(' ')[0];
+    const [hours, minutes] = timeOnly.split(':').map(s => parseInt(s, 10));
 
+    if (isNaN(hours) || isNaN(minutes)) {
+      console.log(`Invalid time format for ${prayer}: ${prayerTime}`);
+      return;
+    }
+
+    // Calculate alarm time (prayer time minus alert minutes)
     const alarmTime = new Date();
     alarmTime.setHours(hours, minutes - alertMinutes, 0, 0);
 
+    // If alarm time has passed today, schedule for tomorrow
     if (alarmTime <= now) {
       alarmTime.setDate(alarmTime.getDate() + 1);
     }
 
-    chrome.alarms.create(`prayer-${prayer.toLowerCase()}`, {
+    const alarmName = `prayer-${prayer.toLowerCase()}`;
+    
+    // Create alarm with proper recurring schedule
+    chrome.alarms.create(alarmName, {
       when: alarmTime.getTime(),
       periodInMinutes: 24 * 60
+    }, (wasCreated) => {
+      if (chrome.runtime.lastError) {
+        console.error(`Error creating alarm for ${prayer}:`, chrome.runtime.lastError);
+      } else if (wasCreated) {
+        console.log(`Alarm set for ${prayer}: ${alarmTime.toLocaleString()} (${alertMinutes} min before ${timeOnly})`);
+      } else {
+        console.log(`Alarm already exists for ${prayer}`);
+      }
     });
   });
 }
@@ -141,19 +195,29 @@ function getNextMidnight() {
 }
 
 async function showPrayerNotification(prayerName) {
-  const stored = await chrome.storage.local.get(['alertTime', 'prayerTimes']);
-  const alertMinutes = stored.alertTime || 20;
-  const prayerTime = stored.prayerTimes?.[prayerName.charAt(0).toUpperCase() + prayerName.slice(1)] || '';
+  try {
+    const stored = await chrome.storage.local.get(['alertTime', 'prayerTimes']);
+    const alertMinutes = stored.alertTime || 20;
+    const prayerTime = stored.prayerTimes?.[prayerName.charAt(0).toUpperCase() + prayerName.slice(1)] || '';
 
-  const title = `${prayerName.charAt(0).toUpperCase() + prayerName.slice(1)} Prayer Reminder`;
-  const message = `${prayerName.charAt(0).toUpperCase() + prayerName.slice(1)} prayer is in ${alertMinutes} minutes (${prayerTime})`;
+    const title = `${prayerName.charAt(0).toUpperCase() + prayerName.slice(1)} Prayer Reminder`;
+    const message = `${prayerName.charAt(0).toUpperCase() + prayerName.slice(1)} prayer is in ${alertMinutes} minutes (${prayerTime})`;
 
-  chrome.notifications.create(`prayer-${prayerName}-${Date.now()}`, {
-    type: 'basic',
-    iconUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGASURBVFhH7ZY9TsNAEIXnJ6QhDRUlHIAj0HEEOg5Ax0noKCnoKCkgQIJEQU1DwQEoKOAAFHRQhPf5zaw3tuPESYgU8aSn2Z2d3dnZ9U+SYRiGsT1wDXBPO9oVuIk3cAkXZKJdg7tT7QpcB7cS2+AO3oAbLfF+4gjO4D7cgRvoG95pwT7cwnO4g2PoE+6V2BYP4A7ewx08h0M4hsNwAo/hCTyAA7iHN/AWnsEdPINDeAJ7cAR7sA87sAe7sAs7sAs7sAM7sA3bsA0VbEEFW7ANFWxBBRuwARuwARuwDhuwDuuwDmuwBmuwBquwCquwCiuwAiuwAkuwBEuwBIuwCIuwCPOwAPOwAPMwB3MwB7MwC7MwCzMwAzMwDdMwDdMwBVMwBVMwCZMwCZMwARMwAeMwDuMwBmMwBqMwCqMwCsMwDMMwBEMwBIMwAIMwAP0wAP3QD33QB33QB93QDV3QBZ3QCZ3QCR3QAR3QDu3QDm3QBi1owQY0YRiG8e9Jkm+gPk1vN6bptAAAAABJRU5ErkJggg==',
-    title: title,
-    message: message,
-    priority: 2,
-    requireInteraction: true
-  });
+    chrome.notifications.create(`prayer-${prayerName}-${Date.now()}`, {
+      type: 'basic',
+      iconUrl: chrome.runtime.getURL('icons/icon128.png'),
+      title: title,
+      message: message,
+      priority: 2,
+      requireInteraction: true
+    }, (notificationId) => {
+      if (chrome.runtime.lastError) {
+        console.error('Error creating notification:', chrome.runtime.lastError);
+      } else {
+        console.log('Notification created successfully:', notificationId);
+      }
+    });
+  } catch (error) {
+    console.error('Error showing prayer notification:', error);
+  }
 }

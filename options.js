@@ -278,7 +278,7 @@ async function saveSettings() {
     // Show browser notification as confirmation
     chrome.notifications.create(`settings-saved-${Date.now()}`, {
       type: 'basic',
-      iconUrl: 'icons/icon128.png',
+      iconUrl: chrome.runtime.getURL('icons/icon128.png'),
       title: 'Settings Saved',
       message: 'Your prayer times settings have been updated successfully.',
       priority: 1
@@ -340,7 +340,7 @@ function testNotification() {
 
   chrome.notifications.create(`test-notification-${Date.now()}`, {
     type: 'basic',
-    iconUrl: 'icons/icon128.png',
+    iconUrl: chrome.runtime.getURL('icons/icon128.png'),
     title: `${prayerName} Prayer Reminder`,
     message: `${prayerName} prayer is in ${alertMinutes} minutes (${sampleTime})`,
     priority: 2,
