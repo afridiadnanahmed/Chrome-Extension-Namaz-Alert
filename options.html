@@ -11,9 +11,11 @@
   <div class="container">
     <h1>Settings</h1>
 
-    <section class="settings-section">
-      <h2>Location</h2>
-      <div class="form-group">
+    <div class="settings-grid">
+      <div class="settings-column">
+        <section class="settings-section">
+          <h2>Location</h2>
+          <div class="form-group">
         <label for="country">Country</label>
         <div class="searchable-select" id="country-select">
           <input type="text" id="country-search" placeholder="Search country..." autocomplete="off">
@@ -54,11 +56,11 @@
           <option value="0">Shafi (Standard)</option>
           <option value="1">Hanafi</option>
         </select>
-      </div>
-    </section>
+          </div>
+        </section>
 
-    <section class="settings-section">
-      <h2>Prayer Times</h2>
+        <section class="settings-section">
+          <h2>Prayer Times</h2>
       <div class="form-group">
         <label>
           <input type="checkbox" id="use-manual-times">
@@ -90,11 +92,11 @@
           <label for="time-isha">Isha</label>
           <input type="time" id="time-isha" disabled>
         </div>
-      </div>
-    </section>
+          </div>
+        </section>
 
-    <section class="settings-section">
-      <h2>Notifications</h2>
+        <section class="settings-section">
+          <h2>Notifications</h2>
       <div class="form-group">
         <label for="alert-time">Alert before prayer (minutes)</label>
         <div class="alert-time-row">
@@ -133,19 +135,21 @@
             <span>Isha</span>
           </label>
         </div>
+          </div>
+        </section>
       </div>
-    </section>
 
-    <section class="settings-section">
-      <h2>99 Names of Allah</h2>
-      <div class="form-group">
-        <label for="name-interval">Rotation interval (minutes)</label>
-        <input type="number" id="name-interval" value="1" min="1" max="60">
-      </div>
-    </section>
+      <div class="settings-column">
+        <section class="settings-section">
+          <h2>99 Names of Allah</h2>
+          <div class="form-group">
+            <label for="name-interval">Rotation interval (minutes)</label>
+            <input type="number" id="name-interval" value="1" min="1" max="60">
+          </div>
+        </section>
 
-    <section class="settings-section">
-      <h2>Arabic/Urdu Font</h2>
+        <section class="settings-section">
+          <h2>Arabic/Urdu Font</h2>
       <div class="form-group">
         <label for="arabic-font">Select font style for Duas and Allah Names</label>
         <select id="arabic-font">
@@ -155,13 +159,13 @@
           <option value="amiri">Amiri (Traditional)</option>
         </select>
       </div>
-      <div class="font-preview">
-        <p id="font-preview-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-      </div>
-    </section>
+          <div class="font-preview">
+            <p id="font-preview-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+          </div>
+        </section>
 
-    <section class="settings-section">
-      <h2>Theme</h2>
+        <section class="settings-section">
+          <h2>Theme</h2>
       <div class="form-group">
         <label for="theme">Select app theme</label>
         <select id="theme">
@@ -189,8 +193,10 @@
           <option value="honeycomb2">Honeycomb 2</option>
           <option value="none">None</option>
         </select>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
 
     <div class="button-group">
       <button id="save-btn" class="btn btn-primary">Save Settings</button>
